@@ -18,6 +18,10 @@ function Invoke-WPFUpdatesdisable {
     $services = @(
         "BITS"
         "wuauserv"
+        "dosvc"
+        "WaaSMedicSvc"
+        "UsoSvc"
+        
     )
 
     foreach ($service in $services) {
