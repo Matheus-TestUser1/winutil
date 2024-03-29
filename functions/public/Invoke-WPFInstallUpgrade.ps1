@@ -1,11 +1,11 @@
 function Invoke-WPFInstallUpgrade {
     <#
-    
-        .DESCRIPTION
-        PlaceHolder
-    
+
+    .SYNOPSIS
+        Invokes the function that upgrades all installed programs using winget
+
     #>
-    if(!(Test-WinUtilPackageManager -winget)){
+    if(!(Get-Command -Name winget -ErrorAction SilentlyContinue)){
         Write-Host "==========================================="
         Write-Host "--       Winget is not installed        ---"
         Write-Host "==========================================="
@@ -13,7 +13,7 @@ function Invoke-WPFInstallUpgrade {
     }
 
     if(Get-WinUtilInstallerProcess -Process $global:WinGetInstall){
-        $msg = "Install process is currently running. Please check for a powershell window labeled 'Winget Install'"
+        $msg = "[Invoke-WPFInstallUpgrade] Install process is currently running. Please check for a powershell window labeled 'Winget Install'"
         [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
         return
     }

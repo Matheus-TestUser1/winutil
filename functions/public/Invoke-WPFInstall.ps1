@@ -1,42 +1,33 @@
 function Invoke-WPFInstall {
     <#
-    
-        .DESCRIPTION
-        PlaceHolder
-    
+
+    .SYNOPSIS
+        Installs the selected programs using winget, if one or more of the selected programs are already installed on the system, winget will try and perform an upgrade if there's a newer version to install.
+
     #>
 
     if($sync.ProcessRunning){
-        $msg = "Install process is currently running."
+        $msg = "[Invoke-WPFInstall] An Install process is currently running."
         [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
         return
     }
 
-    $WingetInstall = Get-WinUtilCheckBoxes -Group "WPFInstall"
+    $WingetInstall = (Get-WinUtilCheckBoxes)["Install"]
 
     if ($wingetinstall.Count -eq 0) {
-        $WarningMsg = "Please select the program(s) to install"
+        $WarningMsg = "Please select the program(s) to install or upgrade"
         [System.Windows.MessageBox]::Show($WarningMsg, $AppTitle, [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
         return
     }
 
-    Invoke-WPFRunspace -ArgumentList $WingetInstall -scriptblock {
-        param($WingetInstall)
+    Invoke-WPFRunspace -ArgumentList $WingetInstall -DebugPreference $DebugPreference -ScriptBlock {
+        param($WingetInstall, $DebugPreference)
+
         try{
             $sync.ProcessRunning = $true
 
-            # Ensure winget is installed
             Install-WinUtilWinget
-
-            # Install all winget programs in new window
             Install-WinUtilProgramWinget -ProgramsToInstall $WingetInstall
-
-            $ButtonType = [System.Windows.MessageBoxButton]::OK
-            $MessageboxTitle = "Installs are Finished "
-            $Messageboxbody = ("Done")
-            $MessageIcon = [System.Windows.MessageBoxImage]::Information
-        
-            [System.Windows.MessageBox]::Show($Messageboxbody, $MessageboxTitle, $ButtonType, $MessageIcon)
 
             Write-Host "==========================================="
             Write-Host "--      Installs have finished          ---"
@@ -44,9 +35,10 @@ function Invoke-WPFInstall {
         }
         Catch {
             Write-Host "==========================================="
-            Write-Host "--      Winget failed to install        ---"
+            Write-Host "Error: $_"
             Write-Host "==========================================="
         }
+        Start-Sleep -Seconds 5
         $sync.ProcessRunning = $False
     }
 }

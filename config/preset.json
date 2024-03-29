@@ -1,35 +1,33 @@
 {
   "desktop": [
-    "WPFEssTweaksAH",
-    "WPFEssTweaksDVR",
-    "WPFEssTweaksHiber",
-    "WPFEssTweaksHome",
-    "WPFEssTweaksLoc",
-    "WPFEssTweaksOO",
-    "WPFEssTweaksServices",
-    "WPFEssTweaksStorage",
-    "WPFEssTweaksTele",
-    "WPFEssTweaksWifi",
-    "WPFMiscTweaksPower",
-    "WPFMiscTweaksNum"
+    "WPFTweaksAH",
+    "WPFTweaksDVR",
+    "WPFTweaksHiber",
+    "WPFTweaksHome",
+    "WPFTweaksLoc",
+    "WPFTweaksOO",
+    "WPFTweaksServices",
+    "WPFTweaksStorage",
+    "WPFTweaksTele",
+    "WPFTweaksWifi",
+    "WPFMiscTweaksPower"
   ],
   "laptop": [
-    "WPFEssTweaksAH",
-    "WPFEssTweaksDVR",
-    "WPFEssTweaksHome",
-    "WPFEssTweaksLoc",
-    "WPFEssTweaksOO",
-    "WPFEssTweaksServices",
-    "WPFEssTweaksStorage",
-    "WPFEssTweaksTele",
-    "WPFEssTweaksWifi",
-    "WPFMiscTweaksLapPower",
-    "WPFMiscTweaksLapNum"
+    "WPFTweaksAH",
+    "WPFTweaksDVR",
+    "WPFTweaksHome",
+    "WPFTweaksLoc",
+    "WPFTweaksOO",
+    "WPFTweaksServices",
+    "WPFTweaksStorage",
+    "WPFTweaksTele",
+    "WPFTweaksWifi",
+    "WPFMiscTweaksLapPower"
   ],
   "minimal": [
-    "WPFEssTweaksHome",
-    "WPFEssTweaksOO",
-    "WPFEssTweaksServices",
-    "WPFEssTweaksTele"
+    "WPFTweaksHome",
+    "WPFTweaksOO",
+    "WPFTweaksServices",
+    "WPFTweaksTele"
   ]
 }

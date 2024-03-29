@@ -1,10 +1,10 @@
 Function Update-WinUtilProgramWinget {
 
     <#
-    
-        .DESCRIPTION
-        This will update programs via Winget using a new powershell.exe instance to prevent the GUI from locking up.
-    
+
+    .SYNOPSIS
+        This will update all programs using Winget
+
     #>
 
     [ScriptBlock]$wingetinstall = {
@@ -12,9 +12,8 @@ Function Update-WinUtilProgramWinget {
         $host.ui.RawUI.WindowTitle = """Winget Install"""
 
         Start-Transcript $ENV:TEMP\winget-update.log -Append
-        winget upgrade --all
+        winget upgrade --all --accept-source-agreements --accept-package-agreements --scope=machine --silent
 
-        Pause
     }
 
     $global:WinGetInstall = Start-Process -Verb runas powershell -ArgumentList "-command invoke-command -scriptblock {$wingetinstall} -argumentlist '$($ProgramsToInstall -join ",")'" -PassThru
